@@ -6,6 +6,9 @@ const nextConfig = {
       "trysai.s3.us-west-1.amazonaws.com",
     ],
   },
+  experimental: {
+    serverComponentsExternalPackages: ['pdf2json'],
+  },
 };
 
 export default nextConfig;

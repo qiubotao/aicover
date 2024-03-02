@@ -34,3 +34,12 @@ CREATE TABLE orders (
     credits INT NOT NULL,
     currency VARCHAR(50)
 );
+
+create table documents (
+    document_id serial ,
+    user_email character varying(512) null,
+    title character varying(1024) null,
+    upload_time timestamp without time zone null default current_timestamp,
+    status character varying(64) null,
+    constraint documents_pkey primary key (document_id)
+  ) tablespace pg_default;
