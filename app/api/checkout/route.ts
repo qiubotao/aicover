@@ -86,7 +86,7 @@ export async function POST(req: Request) {
     };
 
     if (currency === "cny") {
-      options.payment_method_types = ["wechat_pay", "card"];
+      options.payment_method_types = [ "card"];
       options.payment_method_options = {
         wechat_pay: {
           client: "web",
