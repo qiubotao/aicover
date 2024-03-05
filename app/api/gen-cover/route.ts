@@ -12,6 +12,7 @@ import { insertCover } from "@/models/cover";
 export async function POST(req: Request) {
   const user = await currentUser();
   if (!user || !user.emailAddresses || user.emailAddresses.length === 0) {
+    console.log("userInfo ", user);
     return respErr("no auth");
   }
 
