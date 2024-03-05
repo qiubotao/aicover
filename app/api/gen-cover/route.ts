@@ -33,6 +33,7 @@ export async function POST(req: Request) {
     const llm_name = "dall-e-3";
     const img_size = "1024x1792";
 
+    console.log("invoke start ");
     const llm_params: ImageGenerateParams = {
       prompt: `Generate a brand story image about ${description}`,
       model: llm_name,
@@ -44,11 +45,16 @@ export async function POST(req: Request) {
     };
     const created_at = new Date().toISOString();
 
+    console.log("invoke after ");
+
     const res = await client.images.generate(llm_params);
     const raw_img_url = res.data[0].url;
     if (!raw_img_url) {
       return respErr("generate cover failed");
     }
+
+    console.log("invoke after2 ");
+
 
     const img_name = encodeURIComponent(description);
     const s3_img = await downloadAndUploadImage(
@@ -70,6 +76,8 @@ export async function POST(req: Request) {
       uuid: genUuid(),
       status: 1,
     };
+    console.log("db after ");
+
     await insertCover(cover);
 
     return respData(cover);
